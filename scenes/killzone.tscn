@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcmfn6lbhgtxb"]
+
+[ext_resource type="Script" uid="uid://tc7vvkxq7kyt" path="res://scripts/killzone.gd" id="1_xlapc"]
+[ext_resource type="AudioStream" uid="uid://dak6100f44k2n" path="res://assets/sounds/Hit 9 - Sound effects Pack 2.wav" id="2_kl8fp"]
+
+[node name="Killzone" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_xlapc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kl8fp")
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
